@@ -200,6 +200,17 @@ Open the localhost URL displayed in the terminal to access the interactive dashb
 
 The repository already includes processed datasets, trained models and evaluation outputs, so you can explore the dashboard without retraining the models.
 
+## Dashboard Screenshots
+
+### Dashboard Overview
+![Dashboard Overview](screenshots/dashboard-overview.png)
+
+### Workload Forecast
+![Workload Forecast](screenshots/workload-forecast.png)
+
+### Model Evaluation and Energy Simulation
+![Model and Energy Results](screenshots/model-and-energy-results.png)
+
 ## Important Limitations
 
 - The project is an educational prototype and not a production cloud orchestration system.
