@@ -125,21 +125,52 @@ h = st.sidebar.selectbox(
     [1, 2, 3, 4]
 )
 
-servers = st.sidebar.slider(
-    "Number of servers", 4, 20, 10
-)
+# Simulation settings are applied together when the user clicks the button.
+if "simulation_config" not in st.session_state:
+    st.session_state.simulation_config = {
+        "servers": 10,
+        "capacity": 10,
+        "margin": 5,
+        "low_steps": 6
+    }
 
-cap = st.sidebar.slider(
-    "Capacity per server", 5, 20, 10
-)
+with st.sidebar.form("simulation_settings"):
+    st.markdown("### ⚙️ Simulation Settings")
+    servers_input = st.slider(
+        "Number of servers", 4, 20,
+        st.session_state.simulation_config["servers"]
+    )
+    cap_input = st.slider(
+        "Capacity per server", 5, 20,
+        st.session_state.simulation_config["capacity"]
+    )
+    margin_input = st.slider(
+        "Safety margin", 0, 20,
+        st.session_state.simulation_config["margin"]
+    )
+    low_input = st.slider(
+        "Low-demand steps", 2, 24,
+        st.session_state.simulation_config["low_steps"]
+    )
+    apply_settings = st.form_submit_button(
+        "Apply Simulation Settings",
+        type="primary",
+        use_container_width=True
+    )
 
-margin = st.sidebar.slider(
-    "Safety margin", 0, 20, 5
-)
+if apply_settings:
+    st.session_state.simulation_config = {
+        "servers": servers_input,
+        "capacity": cap_input,
+        "margin": margin_input,
+        "low_steps": low_input
+    }
+    st.sidebar.success("Simulation settings applied.")
 
-low = st.sidebar.slider(
-    "Low-demand steps", 2, 24, 6
-)
+servers = st.session_state.simulation_config["servers"]
+cap = st.session_state.simulation_config["capacity"]
+margin = st.session_state.simulation_config["margin"]
+low = st.session_state.simulation_config["low_steps"]
 
 # Model metrics
 selected_metrics = metrics[
@@ -326,6 +357,42 @@ st.plotly_chart(
 st.metric(
     "Unserved Demand Indicator",
     f"{simulation.unserved_demand.sum():.2f}"
+)
+
+# Downloadable results
+st.subheader("Export Results")
+download_col1, download_col2, download_col3 = st.columns(3)
+
+with download_col1:
+    st.download_button(
+        "⬇️ Download Forecast Results",
+        data=forecast.to_csv(index=False).encode("utf-8"),
+        file_name=f"forecast_{h}h.csv",
+        mime="text/csv",
+        use_container_width=True
+    )
+
+with download_col2:
+    st.download_button(
+        "⬇️ Download Model Metrics",
+        data=metrics.to_csv(index=False).encode("utf-8"),
+        file_name="model_evaluation_metrics.csv",
+        mime="text/csv",
+        use_container_width=True
+    )
+
+with download_col3:
+    st.download_button(
+        "⬇️ Download Simulation Results",
+        data=simulation.to_csv(index=False).encode("utf-8"),
+        file_name="energy_simulation_results.csv",
+        mime="text/csv",
+        use_container_width=True
+    )
+
+st.caption(
+    "The forecast and simulation exports contain the results "
+    "for the dataset and settings currently selected."
 )
 
 # Dataset information and limitations
