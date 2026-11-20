@@ -202,14 +202,19 @@ The repository already includes processed datasets, trained models and evaluatio
 
 ## Dashboard Screenshots
 
-### Dashboard Overview
+### 1. Dashboard Overview
 ![Dashboard Overview](screenshots/dashboard-overview.png)
 
-### Workload Forecast
+### 2. Workload Forecast
 ![Workload Forecast](screenshots/workload-forecast.png)
 
-### Model Evaluation and Energy Simulation
-![Model and Energy Results](screenshots/model-and-energy-results-1.png)(screenshots/model-and-energy-results-2.png)
+### 3. Model Evaluation and Energy Simulation
+
+**Model Evaluation**
+![Model Evaluation](screenshots/model-and-energy-results-1.png)
+
+**Energy Simulation**
+![Energy Simulation](screenshots/model-and-energy-results-2.png)
 
 ## Important Limitations
 
