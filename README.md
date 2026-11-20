@@ -214,7 +214,11 @@ The repository already includes processed datasets, trained models and evaluatio
 ![Model Evaluation](screenshots/model-and-energy-results-1.png)
 
 **Energy Simulation**
-![Energy Simulation](screenshots/model-and-energy-results-2.png)
+![Energy Simulation](screenshots/energy-simulation.png)
+
+### 4. Simulation Settings
+![Simulation Settings](screenshots/dashboard-settings.png)
+
 
 ## Important Limitations
 
