@@ -209,7 +209,7 @@ The repository already includes processed datasets, trained models and evaluatio
 ![Workload Forecast](screenshots/workload-forecast.png)
 
 ### Model Evaluation and Energy Simulation
-![Model and Energy Results](screenshots/model-and-energy-results.png)
+![Model and Energy Results](screenshots/model-and-energy-results-1.png)(screenshots/model-and-energy-results-2.png)
 
 ## Important Limitations
 
